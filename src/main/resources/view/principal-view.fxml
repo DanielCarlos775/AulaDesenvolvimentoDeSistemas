@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.daniel_carlos.desenvolv_sist.controller.PrincipalController"
+            prefWidth="600" prefHeight="400">
+    <top>
+        <Label text="Bem-vindo ao sistema!" style="-fx-font-size: 18px; -fx-padding: 10;"/>
+    </top>
+    <center>
+        <Button text="Opção 1"/>
+    </center>
+</BorderPane>
