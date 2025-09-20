@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.daniel_carlos.desenvolv_sist.controller.PrincipalController"
-            prefWidth="600" prefHeight="400">
-    <top>
-        <Label text="Bem-vindo ao sistema!" style="-fx-font-size: 18px; -fx-padding: 10;"/>
-    </top>
-    <center>
-        <Button text="Opção 1"/>
-    </center>
-</BorderPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.daniel_carlos.desenvolv_sist.controller.PrincipalController">
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="Início">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#abrirPaginaInicial" text="Home" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Cadastro">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#abrirCadastroUsuario" text="Cadastrar Usuário" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane fx:id="conteudo" prefHeight="410.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+        </AnchorPane>
+    </children>
+</VBox>

@@ -5,6 +5,7 @@ import com.daniel_carlos.desenvolv_sist.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -30,8 +31,14 @@ public class LoginController {
         Usuario usuario = usuarioDAO.autenticar(email, senha);
 
         if (usuario != null) {
-            lblMensagem.setText("Bem vindo, " + usuario.getNome());
+          //  lblMensagem.setText("Bem vindo, " + usuario.getNome());
             lblMensagem.setStyle("-fx-text-fill: green;");
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmação");
+            alert.setHeaderText(null);
+            alert.setContentText("Bem Vindo ao Sistema ");
+            alert.showAndWait();
 
             //abrir a tela principal
             try {
@@ -41,6 +48,8 @@ public class LoginController {
                 Stage stage = (Stage) txtEmail.getScene().getWindow(); //pega a janela atual
                 stage.setScene(scene);
                 stage.setTitle("Formulário Principal");
+                stage.centerOnScreen();
+                stage.setMaximized(true);
                 stage.show();
             } catch (Exception e) {
                 e.printStackTrace();
