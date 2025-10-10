@@ -5,24 +5,51 @@ import com.daniel_carlos.desenvolv_sist.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class LoginController {
 
-    @FXML
-    private TextField txtEmail;
+    @FXML private Button btnEntrar;
+    @FXML private Button btnFechar;
+    @FXML private TextField txtEmail;
+    @FXML private PasswordField txtSenha;
+    @FXML private Label lblMensagem;
+
+    // Método para fechar o sistema
+    public void close() {System.exit(0);}
+
+    // Método para Login
+    public void login() {
+        String email = txtEmail.getText();
+        String senha = txtSenha.getText();
+
+        Alert mensagem;
+
+        if(email.equals("admin") && senha.equals("123")) {
+            mensagem = new Alert(Alert.AlertType.CONFIRMATION);
+            mensagem.setTitle("Confirmação");
+            mensagem.setHeaderText(null);
+            mensagem.setContentText("Bom Vindo ao Sistema");
+            mensagem.showAndWait();
+
+        } else {
+            mensagem = new Alert(Alert.AlertType.ERROR);
+            mensagem.setTitle("Erro");
+            mensagem.setHeaderText(null);
+            mensagem.setContentText("Email ou Senha Incorretos");
+            mensagem.showAndWait();
+        }
+    }
+
 
     @FXML
-    private PasswordField txtSenha;
+    private void initialize() {
+        btnFechar.setOnAction(event -> {close();});
+        btnEntrar.setOnAction(event -> {login();});
+    }
 
-    @FXML
-    private Label lblMensagem;
-
-    @FXML
+/*    @FXML
     protected void onLogin() {
         String email = txtEmail.getText();
         String senha = txtSenha.getText();
@@ -42,7 +69,7 @@ public class LoginController {
 
             //abrir a tela principal
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/principal-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/principal.fxml"));
                 Scene scene = new Scene(loader.load());
 
                 Stage stage = (Stage) txtEmail.getScene().getWindow(); //pega a janela atual
@@ -59,5 +86,5 @@ public class LoginController {
             lblMensagem.setText("Credenciais inválidas.");
             lblMensagem.setStyle("-fx-text-fill: red;");
         }
-    }
+    }*/
 }
