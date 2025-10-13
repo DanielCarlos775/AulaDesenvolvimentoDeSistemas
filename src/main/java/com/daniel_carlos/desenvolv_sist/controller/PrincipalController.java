@@ -13,13 +13,17 @@ public class PrincipalController {
     private AnchorPane conteudo;
 
     @FXML
+    private void initialize() {
+    }
+
+    @FXML
     private void abrirPaginaInicial() {
         carregarTela("/view/home.fxml", "Página Principal");
     }
 
     @FXML
-    private void abrirCadastroUsuario() {
-        carregarTela("/view/cadastro-usuario.fxml", "Cadastro de Usuários");
+    private void abrirCadastro() {
+        carregarTela("/view/formulario.fxml", "Cadastro de Usuários");
     }
 
     private void carregarTela(String fxmlFile, String tituloFuncionalidade) {
@@ -28,10 +32,10 @@ public class PrincipalController {
             conteudo.getChildren().clear();
             conteudo.getChildren().add(fxml);
 
-            /*AnchorPane.setTopAnchor(fxml, 0.0);
+            AnchorPane.setTopAnchor(fxml, 0.0);
             AnchorPane.setBottomAnchor(fxml, 0.0);
             AnchorPane.setLeftAnchor(fxml, 0.0);
-            AnchorPane.setRightAnchor(fxml, 0.0);*/
+            AnchorPane.setRightAnchor(fxml, 0.0);
 
             Scene scene = conteudo.getScene();
 
@@ -42,7 +46,26 @@ public class PrincipalController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
+
+    public void close() {
+        System.exit(0);
+    }
+
+    public void logout() {
+        Stage stageAtual = (Stage) conteudo.getScene().getWindow();
+        stageAtual.close();
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
+            Stage stageLogin = new Stage();
+            stageLogin.setScene(new Scene(root));
+            stageLogin.centerOnScreen();
+            stageLogin.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

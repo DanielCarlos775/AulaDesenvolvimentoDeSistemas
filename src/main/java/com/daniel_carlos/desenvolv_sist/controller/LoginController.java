@@ -4,20 +4,28 @@ import com.daniel_carlos.desenvolv_sist.dao.UsuarioDAO;
 import com.daniel_carlos.desenvolv_sist.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class LoginController {
 
-    @FXML private Button btnEntrar;
-    @FXML private Button btnFechar;
-    @FXML private TextField txtEmail;
-    @FXML private PasswordField txtSenha;
-    @FXML private Label lblMensagem;
+    @FXML
+    private Button btnEntrar;
+    @FXML
+    private Button btnFechar;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private PasswordField txtSenha;
+    @FXML
+    private Label lblMensagem;
 
     // Método para fechar o sistema
-    public void close() {System.exit(0);}
+    public void close() {
+        System.exit(0);
+    }
 
     // Método para Login
     public void login() {
@@ -26,12 +34,28 @@ public class LoginController {
 
         Alert mensagem;
 
-        if(email.equals("admin") && senha.equals("123")) {
+        if (email.equals("admin") && senha.equals("123")) {
             mensagem = new Alert(Alert.AlertType.CONFIRMATION);
             mensagem.setTitle("Confirmação");
             mensagem.setHeaderText(null);
             mensagem.setContentText("Bom Vindo ao Sistema");
             mensagem.showAndWait();
+
+            btnEntrar.getScene().getWindow().hide();
+
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/view/principal.fxml"));
+                Stage stage = new Stage();
+                Scene scene = new Scene(root);
+
+                stage.setScene(scene);
+                stage.setTitle("Sistema by Daniel Carlos");
+                stage.centerOnScreen();
+                stage.setMaximized(true);
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         } else {
             mensagem = new Alert(Alert.AlertType.ERROR);
@@ -45,8 +69,16 @@ public class LoginController {
 
     @FXML
     private void initialize() {
-        btnFechar.setOnAction(event -> {close();});
-        btnEntrar.setOnAction(event -> {login();});
+        btnFechar.setOnAction(event -> {
+            close();
+        });
+        btnEntrar.setOnAction(event -> {
+            login();
+        });
+        txtEmail.setOnAction(event -> txtSenha.requestFocus());
+        txtSenha.setOnAction(event -> {
+            login();
+        });
     }
 
 /*    @FXML
