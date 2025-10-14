@@ -13,6 +13,7 @@
             <menus>
                 <Menu mnemonicParsing="false" text="Início">
                     <items>
+                  <MenuItem mnemonicParsing="false" onAction="#abrirPaginaInicial" text="Home" />
                         <MenuItem mnemonicParsing="false" onAction="#logout" text="Logout" />
                   <MenuItem mnemonicParsing="false" onAction="#close" text="Fechar" />
                     </items>
@@ -20,13 +21,13 @@
                 <Menu mnemonicParsing="false" text="Cadastro">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#abrirCadastro" text="Clientes" />
-                  <MenuItem mnemonicParsing="false" text="Funcionários" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirFuncionario" text="Funcionários" />
                   <MenuItem mnemonicParsing="false" text="Produtos" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
-        <AnchorPane fx:id="conteudo" prefHeight="410.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+        <AnchorPane fx:id="form" prefHeight="410.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
             <VBox.margin>
                 <Insets />
             </VBox.margin>

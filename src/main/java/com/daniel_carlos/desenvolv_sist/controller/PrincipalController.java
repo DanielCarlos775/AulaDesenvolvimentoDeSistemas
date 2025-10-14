@@ -10,34 +10,34 @@ import javafx.stage.Stage;
 public class PrincipalController {
 
     @FXML
-    private AnchorPane conteudo;
+    private AnchorPane form;
 
     @FXML
     private void initialize() {
     }
 
-    @FXML
-    private void abrirPaginaInicial() {
-        carregarTela("/view/home.fxml", "Página Principal");
+    public void abrirPaginaInicial() {
+        carregarTela("/view/planoFundo.fxml", "Sistema | Página Inicial");
     }
 
-    @FXML
-    private void abrirCadastro() {
-        carregarTela("/view/formulario.fxml", "Cadastro de Usuários");
-    }
+    /*public void abrirCadastro() {
+        carregarTela("/view/formulario.fxml", "Sistema | Cadastro de Usuários");
+    }*/
+
+    public void abrirFuncionario() { carregarTela("/view/funcionario.fxml", "Sistema | Cadastro de Funcionários");}
 
     private void carregarTela(String fxmlFile, String tituloFuncionalidade) {
         try {
             Parent fxml = FXMLLoader.load(getClass().getResource(fxmlFile));
-            conteudo.getChildren().clear();
-            conteudo.getChildren().add(fxml);
+            form.getChildren().clear();
+            form.getChildren().add(fxml);
 
             AnchorPane.setTopAnchor(fxml, 0.0);
             AnchorPane.setBottomAnchor(fxml, 0.0);
             AnchorPane.setLeftAnchor(fxml, 0.0);
             AnchorPane.setRightAnchor(fxml, 0.0);
 
-            Scene scene = conteudo.getScene();
+            Scene scene = form.getScene();
 
             if (scene != null) {
                 Stage stage = (Stage) scene.getWindow();
@@ -53,7 +53,7 @@ public class PrincipalController {
     }
 
     public void logout() {
-        Stage stageAtual = (Stage) conteudo.getScene().getWindow();
+        Stage stageAtual = (Stage) form.getScene().getWindow();
         stageAtual.close();
 
         try {
