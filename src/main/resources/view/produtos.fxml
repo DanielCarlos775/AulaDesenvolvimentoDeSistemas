@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="610.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.daniel_carlos.desenvolv_sist.controller.FuncionarioController">
+<AnchorPane prefHeight="610.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.daniel_carlos.desenvolv_sist.controller.ProdutoController">
    <children>
       <SplitPane dividerPositions="0.5" prefHeight="610.4" prefWidth="959.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
@@ -72,7 +72,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="266.0" layoutY="25.0" text="Cadastro de Funcionário">
+                  <Label layoutX="266.0" layoutY="25.0" text="Cadastro de Usuário">
                      <font>
                         <Font name="System Bold" size="21.0" />
                      </font>

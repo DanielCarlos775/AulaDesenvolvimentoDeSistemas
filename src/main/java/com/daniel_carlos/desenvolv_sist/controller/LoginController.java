@@ -1,7 +1,5 @@
 package com.daniel_carlos.desenvolv_sist.controller;
 
-import com.daniel_carlos.desenvolv_sist.dao.UsuarioDAO;
-import com.daniel_carlos.desenvolv_sist.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

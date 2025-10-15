@@ -14,10 +14,11 @@ public class PrincipalController {
 
     @FXML
     private void initialize() {
+        abrirPaginaInicial();
     }
 
     public void abrirPaginaInicial() {
-        carregarTela("/view/planoFundo.fxml", "Sistema | Página Inicial");
+        carregarTela("/view/planoFundo.fxml", "Sistema | Daniel");
     }
 
     /*public void abrirCadastro() {
@@ -25,6 +26,10 @@ public class PrincipalController {
     }*/
 
     public void abrirFuncionario() { carregarTela("/view/funcionario.fxml", "Sistema | Cadastro de Funcionários");}
+
+    public void abrirClientes() { carregarTela("/view/clientes.fxml", "Sistema | Cadastro de Clientes");}
+
+    public void abrirProdutos() { carregarTela("/view/produtos.fxml", "Sistema | Cadastro de Produtos");}
 
     private void carregarTela(String fxmlFile, String tituloFuncionalidade) {
         try {

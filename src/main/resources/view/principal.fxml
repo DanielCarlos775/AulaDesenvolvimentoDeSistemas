@@ -20,9 +20,9 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Cadastro">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#abrirCadastro" text="Clientes" />
+                        <MenuItem mnemonicParsing="false" onAction="#abrirClientes" text="Clientes" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirFuncionario" text="Funcionários" />
-                  <MenuItem mnemonicParsing="false" text="Produtos" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirProdutos" text="Produtos" />
                     </items>
                 </Menu>
             </menus>
