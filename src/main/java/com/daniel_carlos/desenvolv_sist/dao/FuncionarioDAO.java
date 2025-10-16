@@ -3,10 +3,7 @@ package com.daniel_carlos.desenvolv_sist.dao;
 import com.daniel_carlos.desenvolv_sist.model.Funcionario;
 import com.daniel_carlos.desenvolv_sist.util.ConnectionFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +25,7 @@ public class FuncionarioDAO {
             if (descricao != null && !descricao.isEmpty()) {
                 sql = "select *FROM funcionarios WHERE nome LIKE ?";
                 query = conn.prepareStatement(sql);
-                query.setString(1, "%" + sql + "%");
+                query.setString(1, "%" + descricao + "%");
             } else {
                 query = conn.prepareStatement(sql);
             }
@@ -65,6 +62,38 @@ public class FuncionarioDAO {
             e.printStackTrace();
         }
         return funcionarios;
+    }
+
+    public void insert(Funcionario funcionario) throws SQLException {
+        final String sql = "INSERT INTO funcionarios " +
+                "(nome, cpf, rg, cargo, salario, usuario, senha) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setString(1, funcionario.getNome());
+            stmt.setString(2, funcionario.getCpf());
+
+            if (funcionario.getRg() == null) stmt.setNull(3, Types.VARCHAR);
+            else stmt.setString(3, funcionario.getRg());
+
+            if (funcionario.getCargo() == null) stmt.setNull(4, Types.VARCHAR);
+            else stmt.setString(4, funcionario.getCargo());
+
+            if (funcionario.getSalario() == null) stmt.setNull(5, Types.VARCHAR);
+            else stmt.setString(5, funcionario.getSalario());
+
+            stmt.setString(6, funcionario.getUsuario());
+            stmt.setString(7, funcionario.getSenha());
+            stmt.executeUpdate();
+
+            try (ResultSet rs = stmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    funcionario.setId(rs.getInt(1));
+                }
+            }
+        }
     }
 
 

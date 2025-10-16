@@ -120,4 +120,5 @@ public class Funcionario {
     public void setDataAlteracao(Date dataAlteracao) {
         this.dataAlteracao = dataAlteracao;
     }
+
 }
