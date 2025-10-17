@@ -79,17 +79,16 @@ public class FormularioController {
         });
 
         btNovo.setOnAction(event -> {
-            statusForm = 0;
+            statusForm = 1;
             emEdicao(true);
             habilitaCampos(true);
             limpaCampos();
         });
 
         btEditar.setOnAction(event -> {
-            statusForm = 1;
+            statusForm = 2;
             emEdicao(true);
             habilitaCampos(true);
-            limpaCampos();
         });
 
         btSalvar.setOnAction(event -> {

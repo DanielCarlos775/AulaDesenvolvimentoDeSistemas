@@ -64,7 +64,104 @@ public class FuncionarioDAO {
         return funcionarios;
     }
 
-    public void insert(Funcionario funcionario) throws SQLException {
+    //INSERT
+    public boolean inserirFuncionario(Funcionario funcionario) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = ConnectionFactory.getConnection();
+            String sql = "INSERT funcionarios " +
+                    "(nome, cpf, rg, cargo, salario, usuario, senha, data_cadastro, data_alteracao) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, now(), null)";
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, funcionario.getNome());
+            stmt.setString(2, funcionario.getCpf());
+
+            if (funcionario.getRg() == null) stmt.setNull(3, Types.VARCHAR);
+            else stmt.setString(3, funcionario.getRg());
+
+            if (funcionario.getCargo() == null) stmt.setNull(4, Types.VARCHAR);
+            else stmt.setString(4, funcionario.getCargo());
+
+            if (funcionario.getSalario() == null) stmt.setNull(5, Types.VARCHAR);
+            else stmt.setString(5, funcionario.getSalario());
+
+            stmt.setString(6, funcionario.getUsuario());
+            stmt.setString(7, funcionario.getSenha());
+
+            int insert = stmt.executeUpdate();
+
+            return insert > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // UPDATE
+
+    public boolean atualizarFuncionario(Funcionario funcionario) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = ConnectionFactory.getConnection();
+            String sql = "UPDATE funcionarios " +
+                    " set nome = ?, cpf = ?, rg = ?, cargo = ?, salario = ?, usuario = ?, senha = ?, data_alteracao = now() " +
+                    "WHERE id_funcionario = ?";
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, funcionario.getNome());
+            stmt.setString(2, funcionario.getCpf());
+
+            if (funcionario.getRg() == null) stmt.setNull(3, Types.VARCHAR);
+            else stmt.setString(3, funcionario.getRg());
+
+            if (funcionario.getCargo() == null) stmt.setNull(4, Types.VARCHAR);
+            else stmt.setString(4, funcionario.getCargo());
+
+            if (funcionario.getSalario() == null) stmt.setNull(5, Types.VARCHAR);
+            else stmt.setString(5, funcionario.getSalario());
+
+            stmt.setString(6, funcionario.getUsuario());
+            stmt.setString(7, funcionario.getSenha());
+            stmt.setInt(8, funcionario.getId());
+
+            int update = stmt.executeUpdate();
+
+            return update > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // DELETE
+    public boolean excluirFuncionario(int id) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try{
+            conn = ConnectionFactory.getConnection();
+            String sql = "DELETE from funcionarios where id_funcionario = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            int delete = stmt.executeUpdate();
+
+            return delete > 1;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+
+    }
+
+    /*public void insert(Funcionario funcionario) throws SQLException {
         final String sql = "INSERT INTO funcionarios " +
                 "(nome, cpf, rg, cargo, salario, usuario, senha) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -94,7 +191,7 @@ public class FuncionarioDAO {
                 }
             }
         }
-    }
+    }*/
 
 
     /*public Funcionario autenticar(String email, String senha) {

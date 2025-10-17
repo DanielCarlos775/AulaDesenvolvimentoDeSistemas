@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+import java.util.Date;
 import java.util.List;
 
 public class FuncionarioController extends FormularioController {
@@ -63,7 +64,6 @@ public class FuncionarioController extends FormularioController {
                         txfNomeCompleto.setText(novaSelecao.getNome());
                         txfCPF.setText(novaSelecao.getCpf());
                         txfRG.setText(novaSelecao.getRg());
-                        txfCargo.setText(novaSelecao.getRg());
                         txfCargo.setText(novaSelecao.getCargo());
                         txfSalario.setText(novaSelecao.getSalario());
                         txfUsuario.setText(novaSelecao.getUsuario());
@@ -91,13 +91,74 @@ public class FuncionarioController extends FormularioController {
                 txfNomeCompleto.setText(funcionario.getNome());
                 txfCPF.setText(funcionario.getCpf());
                 txfRG.setText(funcionario.getRg());
-                txfCargo.setText(funcionario.getRg());
                 txfCargo.setText(funcionario.getCargo());
                 txfSalario.setText(funcionario.getSalario());
                 txfUsuario.setText(funcionario.getUsuario());
                 txfSenha.setText(funcionario.getSenha());
                 //txfDataCadastro.setText(funcionario.getDataCadastro().toString());
             }
+        }
+    }
+
+    @FXML
+    protected void Salvar() {
+        FuncionarioDAO dao = new FuncionarioDAO();
+        try {
+            String nome = txfNomeCompleto.getText();
+            String cpf = txfCPF.getText();
+            String rg = txfRG.getText();
+            String cargo = txfCargo.getText();
+            String salario = txfSalario.getText();
+            String usuario = txfUsuario.getText();
+            String senha = txfSenha.getText();
+            Date data = new Date();
+
+            if (statusForm == 1) {
+                Funcionario novoFuncionario = new Funcionario(0, nome, cpf, rg, cargo, salario, usuario, senha, data, data);
+                boolean ok = dao.inserirFuncionario(novoFuncionario);
+
+                if (ok) {
+                    // MENSAGEM DE CADASTRO CONCLUÍDO
+                } else {
+                    // MENSAGEM DE ERRO AO CADASTRAR
+                }
+
+            } else if (statusForm == 2) {
+                int id = tabDados.getSelectionModel().getSelectedItem().getId();
+                Funcionario atualizaFuncionario = new Funcionario(id, nome, cpf, rg, cargo, salario, usuario, senha, null, null);
+                boolean ok = dao.atualizarFuncionario(atualizaFuncionario);
+
+                if (ok) {
+                    // MENSAGEM DE ATUALIZAÇÃO CONCLUÍDA
+                } else {
+                    // MENSAGEM DE ERRO AO ATUALIZAR
+                }
+
+            } else {
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            carregarDados(null);
+        }
+    }
+
+    @FXML
+    protected void Excluir() {
+        FuncionarioDAO dao = new FuncionarioDAO();
+        try {
+            int id = tabDados.getSelectionModel().getSelectedItem().getId();
+            boolean ok = dao.excluirFuncionario(id);
+
+            if (ok) {
+                //MENSAGEM DE EXCLUIDO COM SUCESSO
+
+            } else {
+                //MENSAGEM DE ERRO AO EXCLUIR
+            }
+        } finally {
+            carregarDados(null);
         }
     }
 }
