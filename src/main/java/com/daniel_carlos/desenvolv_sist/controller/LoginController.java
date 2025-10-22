@@ -1,5 +1,6 @@
 package com.daniel_carlos.desenvolv_sist.controller;
 
+import com.daniel_carlos.desenvolv_sist.dao.FuncionarioDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,7 +33,8 @@ public class LoginController {
 
         Alert mensagem;
 
-        if (email.equals("admin") && senha.equals("123")) {
+        FuncionarioDAO dao = new FuncionarioDAO();
+        if (dao.autenticar(email, senha)){
             mensagem = new Alert(Alert.AlertType.CONFIRMATION);
             mensagem.setTitle("Confirmação");
             mensagem.setHeaderText(null);

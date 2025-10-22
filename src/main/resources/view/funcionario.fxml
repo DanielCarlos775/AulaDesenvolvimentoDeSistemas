@@ -14,7 +14,7 @@
 
 <AnchorPane prefHeight="610.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.daniel_carlos.desenvolv_sist.controller.FuncionarioController">
    <children>
-      <SplitPane dividerPositions="0.5" prefHeight="610.4" prefWidth="959.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.2" prefHeight="610.4" prefWidth="959.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
@@ -23,6 +23,9 @@
                       <TableColumn fx:id="colId" prefWidth="82.3999587893486" text="ID" />
                       <TableColumn fx:id="colDescricao" prefWidth="256.00008392333984" text="Descrição" />
                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
                   <TextField fx:id="txfBuscar" layoutX="4.0" layoutY="65.0" prefHeight="42.0" prefWidth="329.0" />
                   <Label layoutX="14.0" layoutY="41.0" text="Tecle &quot;Enter para buscar" />

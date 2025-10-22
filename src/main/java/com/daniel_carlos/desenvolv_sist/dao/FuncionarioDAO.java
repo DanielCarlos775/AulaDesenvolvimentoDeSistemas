@@ -9,6 +9,27 @@ import java.util.List;
 
 public class FuncionarioDAO {
 
+    // Autenticar Usuário e Senha
+    public boolean autenticar(String usuario, String senha) {
+        try {
+            String sql = "SELECT *from funcionarios where BINARY usuario=? and BINARY senha=?";
+
+            Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, usuario);
+            stmt.setString(2, senha);
+
+            ResultSet resultado = stmt.executeQuery();
+            return resultado.next();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
     //Listar
     public List<Funcionario> listarFuncionarios(String descricao) {
         Connection conn = null;
@@ -143,7 +164,7 @@ public class FuncionarioDAO {
         Connection conn = null;
         PreparedStatement stmt = null;
 
-        try{
+        try {
             conn = ConnectionFactory.getConnection();
             String sql = "DELETE from funcionarios where id_funcionario = ?";
             stmt = conn.prepareStatement(sql);
