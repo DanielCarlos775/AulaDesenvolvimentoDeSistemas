@@ -20,11 +20,17 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Cadastro">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#abrirClientes" text="Clientes" />
+                        <MenuItem mnemonicParsing="false" onAction="#abrirCliente" text="Clientes" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirFuncionario" text="Funcionários" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirProdutos" text="Produtos" />
                     </items>
                 </Menu>
+            <Menu mnemonicParsing="false" text="Formulários">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#abrirPaginaInicial" text="Vendas" />
+                  <MenuItem mnemonicParsing="false" onAction="#logout" text="Relatórios" />
+               </items>
+            </Menu>
             </menus>
         </MenuBar>
         <AnchorPane fx:id="form" prefHeight="410.0" prefWidth="600.0" VBox.vgrow="ALWAYS">

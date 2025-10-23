@@ -27,7 +27,7 @@ public class PrincipalController {
 
     public void abrirFuncionario() { carregarTela("/view/funcionario.fxml", "Sistema | Cadastro de Funcionários");}
 
-    public void abrirClientes() { carregarTela("/view/clientes.fxml", "Sistema | Cadastro de Clientes");}
+    public void abrirCliente() { carregarTela("/view/cliente.fxml", "Sistema | Cadastro de Clientes");}
 
     public void abrirProdutos() { carregarTela("/view/produtos.fxml", "Sistema | Cadastro de Produtos");}
 
