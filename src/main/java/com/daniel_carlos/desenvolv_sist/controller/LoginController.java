@@ -1,6 +1,7 @@
 package com.daniel_carlos.desenvolv_sist.controller;
 
 import com.daniel_carlos.desenvolv_sist.dao.FuncionarioDAO;
+import com.daniel_carlos.desenvolv_sist.util.Metodo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,8 +24,11 @@ public class LoginController {
 
     // Método para fechar o sistema
     public void close() {
-        System.exit(0);
+        if (Metodo.mensagemConfirmacao("Fechar Sistema", null, "Deseja fechar o sistema?")) {
+            System.exit(0);
+        }
     }
+
 
     // Método para Login
     public void login() {
@@ -34,12 +38,15 @@ public class LoginController {
         Alert mensagem;
 
         FuncionarioDAO dao = new FuncionarioDAO();
-        if (dao.autenticar(email, senha)){
-            mensagem = new Alert(Alert.AlertType.CONFIRMATION);
+
+        if (dao.autenticar(email, senha)) {
+            /*mensagem = new Alert(Alert.AlertType.CONFIRMATION);
             mensagem.setTitle("Confirmação");
             mensagem.setHeaderText(null);
             mensagem.setContentText("Bom Vindo ao Sistema");
-            mensagem.showAndWait();
+            mensagem.showAndWait();*/
+
+            Metodo.mensagem("Confirmação", null, "Bem vindo Ao Sistema", "1");
 
             btnEntrar.getScene().getWindow().hide();
 
@@ -48,21 +55,34 @@ public class LoginController {
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
 
+                /*CONFIGURA PROPRIEDADES DA TELA OU FORMULÁRIO*/
                 stage.setScene(scene);
                 stage.setTitle("Sistema by Daniel Carlos");
                 stage.centerOnScreen();
                 stage.setMaximized(true);
-                stage.show();
+
+                // EVENTO DE FECHAMENTO
+                stage.setOnCloseRequest(e -> {
+                    e.consume(); //Impede o fechamento automático
+                    //confirmarSaida(primaryStage);
+                    if (Metodo.mensagemConfirmacao("Fechar Sistema", null, "Deseja fechar o sistema?")) {
+                        stage.close();
+                    }
+                });
+                stage.show(); //Mostra o formulário
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         } else {
-            mensagem = new Alert(Alert.AlertType.ERROR);
-            mensagem.setTitle("Erro");
-            mensagem.setHeaderText(null);
-            mensagem.setContentText("Email ou Senha Incorretos");
-            mensagem.showAndWait();
+
+        /*mensagem = new Alert(Alert.AlertType.ERROR);
+        mensagem.setTitle("Erro");
+        mensagem.setHeaderText(null);
+        mensagem.setContentText("Email ou Senha Incorretos");
+        mensagem.showAndWait();*/
+
+            Metodo.mensagem("Erro", null, "Usuário ou Senha Incorretos", "3");
         }
     }
 

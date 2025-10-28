@@ -2,6 +2,7 @@ package com.daniel_carlos.desenvolv_sist.controller;
 
 import com.daniel_carlos.desenvolv_sist.dao.FuncionarioDAO;
 import com.daniel_carlos.desenvolv_sist.model.Funcionario;
+import com.daniel_carlos.desenvolv_sist.util.Metodo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -119,8 +120,10 @@ public class FuncionarioController extends FormularioController {
 
                 if (ok) {
                     // MENSAGEM DE CADASTRO CONCLUÍDO
+                    Metodo.mensagem("Confirmado", null, "Funcionário salvo com sucesso.", "1");
                 } else {
                     // MENSAGEM DE ERRO AO CADASTRAR
+                    Metodo.mensagem("Erro", null, "Erro ao salvar funcionário.", "3");
                 }
 
             } else if (statusForm == 2) {
@@ -130,8 +133,10 @@ public class FuncionarioController extends FormularioController {
 
                 if (ok) {
                     // MENSAGEM DE ATUALIZAÇÃO CONCLUÍDA
+                    Metodo.mensagem("Confirmado", null, "Funcionário alterado com sucesso.", "1");
                 } else {
                     // MENSAGEM DE ERRO AO ATUALIZAR
+                    Metodo.mensagem("Erro", null, "Erro ao alterar funcionário.", "3");
                 }
 
             } else {
@@ -153,9 +158,10 @@ public class FuncionarioController extends FormularioController {
 
             if (ok) {
                 //MENSAGEM DE EXCLUIDO COM SUCESSO
-
+                Metodo.mensagem("Confirmado", null, "Funcionário excluído com sucesso.", "1");
             } else {
                 //MENSAGEM DE ERRO AO EXCLUIR
+                Metodo.mensagem("Erro", null, "Erro ao excluir funcionário.", "3");
             }
         } finally {
             carregarDados(null);

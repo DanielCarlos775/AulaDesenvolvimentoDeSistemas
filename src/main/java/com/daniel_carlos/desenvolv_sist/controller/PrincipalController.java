@@ -1,5 +1,6 @@
 package com.daniel_carlos.desenvolv_sist.controller;
 
+import com.daniel_carlos.desenvolv_sist.util.Metodo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,11 +26,22 @@ public class PrincipalController {
         carregarTela("/view/formulario.fxml", "Sistema | Cadastro de Usuários");
     }*/
 
-    public void abrirFuncionario() { carregarTela("/view/funcionario.fxml", "Sistema | Cadastro de Funcionários");}
+    public void abrirFuncionario() {
+        carregarTela("/view/funcionario.fxml", "Sistema | Cadastro de Funcionários");
+    }
 
-    public void abrirCliente() { carregarTela("/view/cliente.fxml", "Sistema | Cadastro de Clientes");}
+    public void abrirCliente() {
+        carregarTela("/view/cliente.fxml", "Sistema | Cadastro de Clientes");
+    }
 
-    public void abrirProdutos() { carregarTela("/view/produtos.fxml", "Sistema | Cadastro de Produtos");}
+    public void abrirProdutos() {
+        carregarTela("/view/produtos.fxml", "Sistema | Cadastro de Produtos");
+    }
+
+    @FXML
+    private void abrirFrenteCaixa() {
+        Metodo.abrirJanelaModal("frenteCaixa.fxml", null, ((Stage) form.getScene().getWindow()));
+    }
 
     private void carregarTela(String fxmlFile, String tituloFuncionalidade) {
         try {
@@ -54,7 +66,9 @@ public class PrincipalController {
     }
 
     public void close() {
-        System.exit(0);
+        if (Metodo.mensagemConfirmacao("Fechar Sistema", null, "Deseja fechar o sistema?")) {
+            System.exit(0);
+        }
     }
 
     public void logout() {
@@ -74,3 +88,4 @@ public class PrincipalController {
 
 
 }
+

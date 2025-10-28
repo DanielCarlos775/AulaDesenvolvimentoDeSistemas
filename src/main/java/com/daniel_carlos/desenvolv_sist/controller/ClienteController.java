@@ -2,6 +2,7 @@ package com.daniel_carlos.desenvolv_sist.controller;
 
 import com.daniel_carlos.desenvolv_sist.dao.ClienteDAO;
 import com.daniel_carlos.desenvolv_sist.model.Cliente;
+import com.daniel_carlos.desenvolv_sist.util.Metodo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -103,8 +104,10 @@ public class ClienteController extends FormularioController {
 
                 if (ok) {
                     // MENSAGEM DE CADASTRO CONCLUÍDO
+                    Metodo.mensagem("Confirmado", null, "Cliente salvo com sucesso.", "1");
                 } else {
                     // MENSAGEM DE ERRO AO CADASTRAR
+                    Metodo.mensagem("Erro", null, "Erro ao salvar Cliente.", "3");
                 }
 
             } else if (statusForm == 2) {
@@ -114,8 +117,10 @@ public class ClienteController extends FormularioController {
 
                 if (ok) {
                     // MENSAGEM DE ATUALIZAÇÃO CONCLUÍDA
+                    Metodo.mensagem("Confirmado", null, "Cliente alterado com sucesso.", "1");
                 } else {
                     // MENSAGEM DE ERRO AO ATUALIZAR
+                    Metodo.mensagem("Erro", null, "Erro ao alterar cliente.", "3");
                 }
 
             } else {
@@ -137,9 +142,10 @@ public class ClienteController extends FormularioController {
 
             if (ok) {
                 //MENSAGEM DE EXCLUIDO COM SUCESSO
-
+                Metodo.mensagem("Confirmado", null, "Cliente excluído com sucesso.", "1");
             } else {
                 //MENSAGEM DE ERRO AO EXCLUIR
+                Metodo.mensagem("Erro", null, "Erro ao excluir cliente.", "3");
             }
         } finally {
             carregarDados(null);
