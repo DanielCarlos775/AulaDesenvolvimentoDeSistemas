@@ -62,7 +62,7 @@ public class Metodo {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(Metodo.class.getResource("/application/view/" + fxml));
+            FXMLLoader loader = new FXMLLoader(Metodo.class.getResource("/view/" + fxml));
             Parent root = loader.load();
 
             Stage stage = new Stage();

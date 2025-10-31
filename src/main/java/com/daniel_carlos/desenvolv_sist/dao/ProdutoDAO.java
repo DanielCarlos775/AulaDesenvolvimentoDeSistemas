@@ -13,9 +13,9 @@ import java.util.List;
 public class ProdutoDAO {
 
     //Listar
-    public List<Produto> listarProdutos(String descricao) {
+    public List<Produto> listarProdutos(String descricao, int tipo) {
         Connection conn = null;
-        PreparedStatement query = null;
+        PreparedStatement stmt = null;
         ResultSet resultado = null;
 
         List<Produto> produtos = new ArrayList<Produto>();
@@ -26,14 +26,20 @@ public class ProdutoDAO {
             String sql = "select *FROM produtos";
 
             if (descricao != null && !descricao.isEmpty()) {
-                sql = "select *FROM produtos WHERE nome LIKE ?";
-                query = conn.prepareStatement(sql);
-                query.setString(1, "%" + descricao + "%");
+                if (tipo == 1) {
+                    sql = "select *FROM produtos WHERE nome LIKE ?";
+                    stmt = conn.prepareStatement(sql);
+                    stmt.setString(1, "%" + descricao + "%");
+                } else if (tipo == 2) {
+                    sql = "select *FROM produtos WHERE cod_barras = ?";
+                    stmt = conn.prepareStatement(sql);
+                    stmt.setString(1, descricao);
+                }
             } else {
-                query = conn.prepareStatement(sql);
+                stmt = conn.prepareStatement(sql);
             }
 
-            resultado = query.executeQuery();
+            resultado = stmt.executeQuery();
 
             while (resultado.next()) {
                 Produto p = new Produto(

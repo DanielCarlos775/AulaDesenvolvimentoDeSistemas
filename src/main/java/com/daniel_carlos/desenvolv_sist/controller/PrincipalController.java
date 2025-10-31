@@ -40,7 +40,7 @@ public class PrincipalController {
 
     @FXML
     private void abrirFrenteCaixa() {
-        Metodo.abrirJanelaModal("frenteCaixa.fxml", null, ((Stage) form.getScene().getWindow()));
+        Metodo.abrirJanelaModal("frente_de_caixa.fxml", null, ((Stage) form.getScene().getWindow()));
     }
 
     private void carregarTela(String fxmlFile, String tituloFuncionalidade) {
