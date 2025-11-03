@@ -17,8 +17,8 @@ public class PedidoDAO {
         PreparedStatement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
-            String sql = "INSERT INTO pedidos (data_pedido,id_cliente,id_funcionario,desconto,valor_pedido,valor_total,data_cadastro,data_alteracao)" +
-                    "VALUES (now(),null,null,0,0,0,now(),null)";
+            String sql = "INSERT INTO pedidos (data_pedido,id_cliente,id_funcionario,desconto,subtotal_pedido,data_cadastro,data_alteracao)" +
+                    "VALUES (now(),null,null,0,0,now(),null)";
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.executeUpdate();
 
@@ -35,19 +35,19 @@ public class PedidoDAO {
 
 
     public boolean inserirItemPedido(int IdPedido, int IdProduto, int quantidade,
-                                     double precoUnitario, double desconto, double valorTotal) {
+                                     double precoUnitario, double valorTotal) {
         Connection conn = null;
         PreparedStatement stmt = null;
         try {
             conn = ConnectionFactory.getConnection();
-            String sql = "INSERT INTO item_pedido (id_pedido, id_produto, quantidade, preco_unitario, desconto, data_cadastro, data_alteracao)" +
-                    "VALUES (?, ?, ?, ?, ?, now(), null)";
+            String sql = "INSERT INTO item_pedido (id_pedido, id_produto, quantidade, preco_unitario, data_cadastro, data_alteracao)" +
+                    "VALUES (?, ?, ?, ?, now(), null)";
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, IdPedido);
             stmt.setInt(2, IdProduto);
             stmt.setInt(3, quantidade);
             stmt.setDouble(4, precoUnitario);
-            stmt.setDouble(5, desconto);
+            //stmt.setDouble(5, desconto);
             //stmt.setDouble(6,valorTotal);
             //query.executeUpdate();
             int insert = stmt.executeUpdate();
@@ -85,7 +85,6 @@ public class PedidoDAO {
                         resultado.getString("codBarras"),
                         resultado.getString("Descricao"),
                         resultado.getDouble("preco_unitario"),
-                        resultado.getDouble("desconto"),
                         resultado.getDouble("valor_total"),
                         resultado.getDate("data_cadastro"),
                         resultado.getDate("data_alteracao")
@@ -97,7 +96,6 @@ public class PedidoDAO {
                 i.setCodBarras(resultado.getString("codBarras"));
                 i.setDescricao(resultado.getString("Descricao"));
                 i.setPrecoUnitario(resultado.getDouble("preco_unitario"));
-                i.setDesconto(resultado.getDouble("desconto"));
                 i.setValorTotal(resultado.getDouble("valor_total"));
                 i.setDataCadastro(resultado.getDate("data_cadastro"));
                 i.setDataAlteracao(resultado.getDate("data_alteracao"));

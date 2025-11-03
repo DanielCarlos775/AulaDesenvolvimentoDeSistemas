@@ -11,7 +11,6 @@ public class Item {
     private String codBarras;
     private String descricao;
     private Double precoUnitario;
-    private Double desconto;
     private Double valorTotal;
     private Date dataCadastro;
     private Date dataAlteracao;
@@ -24,7 +23,6 @@ public class Item {
             String codBarras,
             String descricao,
             Double precoUnitario,
-            Double desconto,
             Double valorTotal,
             Date dataCadastro,
             Date dataAlteracao
@@ -36,7 +34,6 @@ public class Item {
         this.codBarras = codBarras;
         this.descricao = descricao;
         this.precoUnitario = precoUnitario;
-        this.desconto = desconto;
         this.valorTotal = valorTotal;
         this.dataCadastro = dataCadastro;
         this.dataAlteracao = dataAlteracao;
@@ -98,14 +95,6 @@ public class Item {
 
     public void setPrecoUnitario(Double precoUnitario) {
         this.precoUnitario = precoUnitario;
-    }
-
-    public Double getDesconto() {
-        return desconto;
-    }
-
-    public void setDesconto(Double desconto) {
-        this.desconto = desconto;
     }
 
     public Double getValorTotal() {

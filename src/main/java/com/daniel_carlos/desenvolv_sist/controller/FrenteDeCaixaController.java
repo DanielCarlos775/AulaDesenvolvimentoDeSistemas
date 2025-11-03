@@ -268,7 +268,6 @@ public class FrenteDeCaixaController {
                 tabItem.getSelectionModel().getSelectedItem().getIdProduto(),
                 Integer.valueOf(txtQuantidade.getText()),
                 tabItem.getSelectionModel().getSelectedItem().getPreco(),
-                0,
                 tabItem.getSelectionModel().getSelectedItem().getPreco() * Integer.valueOf(txtQuantidade.getText())
         );
 
